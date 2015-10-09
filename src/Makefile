@@ -7,7 +7,7 @@ OCAMLC=ocamlfind c -package typeutil,camlp5 -I ../camlp5 -pp $(CAMLP5PP)
 all: GT.ml.pp GT.cmo GT.cmx GT.cma GT.cmxa
 
 GT.ml.pp: GT.ml
-	m4 macro $< > $@
+	m4 macro.m4 $< > $@
 
 GT.cmo: GT.ml.pp
 	$(OCAMLC) -c -impl $< -o $@
