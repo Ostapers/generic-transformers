@@ -4,15 +4,15 @@ OCAMLC=ocamlfind c -package typeutil,camlp5 -I ../camlp5 -pp $(CAMLP5PP)
 
 .SUFFIXES: .cmo .cmx .ml
 
-all: GT.ml.pp GT.cmo GT.cmx GT.cma GT.cmxa
+all: GT.pp GT.cmo GT.cmx GT.cma GT.cmxa
 
-GT.ml.pp: GT.ml
+GT.pp: GT.ml
 	m4 macro.m4 $< > $@
 
-GT.cmo: GT.ml.pp
+GT.cmo: GT.pp
 	$(OCAMLC) -c -impl $< -o $@
 
-GT.cmx: GT.ml.pp
+GT.cmx: GT.pp
 	$(OCAMLOPT) -c -impl $< -o $@
 
 GT.cma: GT.cmo
