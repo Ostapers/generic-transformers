@@ -1,31 +1,24 @@
-CAMLP5PP="camlp5o pr_o.cmo"
-#OCAMLOPT=ocamlfind opt  -package typeutil,camlp5 -pp $(CAMLP5PP) -verbose
-OCAMLC=ocamlfind c -package typeutil,camlp5 -I ../camlp5 -pp $(CAMLP5PP)
+CAMLP5PP="camlp5o"
+#OCAMLOPT=ocamlfind opt  -package typeutil,camlp5 -pp $(CAMLP5PP)
+OCAMLC=ocamlfind c -g -package typeutil,camlp5 -I ../camlp5 -pp $(CAMLP5PP)
+TARGETS=show.cmo map.cmo foldl.cmo foldr.cmo eq.cmo compare.cmo html.cmo
 
-.SUFFIXES: .cmo .ml
+.SUFFIXES: .cmo .cmx .ml
 
-all: show.cmo map.cmo foldl.cmo foldr.cmo eq.cmo compare.cmo html.cmo
-
-#pa_gt.cmo: plugin.cmo core.cmo extension.cmo
-#	$(OCAMLC) -o $@ -pack $<
-
-#plugin.cmo: plugin.ml
-#	$(OCAMLC) -c $<
-
-#extension.cmo: extension.ml core.cmo
-#	ocamlfind c -package typeutil,camlp5 -pp $(CAMLP5PP) -c $<
-
-#core.cmo: core.ml
-#	ocamlfind c -package typeutil,camlp5 -pp $(CAMLP5PP) -c $<
-
-#extension.cmo: extension.ml core.cmo
-#	$(OCAMLC) -c $<
-
-#core.cmo: core.ml
-#	$(OCAMLC) -c $<
+all: $(TARGETS)
 
 .ml.cmo:
-	$(OCAMLC) -c $< -o $@
+	$(OCAMLC) -c $<
 
 clean:
 	$(RM) -f *.cm[ioxa] *.o
+
+install:
+	for i in $(TARGETS) ; do \
+            /usr/bin/install -c -m 644 $$i `ocamlfind query camlp5`/$$i; \
+        done
+
+uninstall:
+	for i in $(TARGETS) ; do \
+            $(RM) `ocamlfind query camlp5`/$$i; \
+        done

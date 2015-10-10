@@ -16,10 +16,10 @@ GT.cmx: GT.ml.pp
 	$(OCAMLOPT) -c -impl $< -o $@
 
 GT.cma: GT.cmo
-	$(OCAMLC)   -linkpkg $< -o $@
+	$(OCAMLC)   $< -a -o $@
 
 GT.cmxa: GT.cmx
-	$(OCAMLOPT) -linkpkg $< -o $@
+	$(OCAMLOPT) $< -a -o $@
 
 clean:
 	$(RM) -f *.cm[ioxa] *.o
