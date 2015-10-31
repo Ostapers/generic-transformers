@@ -17,15 +17,15 @@ camlp5/pa_gt.cmo:
 
 install:
 	ocamlfind install GT META src/GT.cma src/GT.cmxa src/GT.cmi src/GT.a camlp5/pa_gt.cmo
-	for i in pa_gt.cmo pa_gt.cmi; do \
-            /usr/bin/install -c -m 644 camlp5/$$i `ocamlfind query camlp5`/$$i; \
-        done
 	$(MAKE) -C plugins install
+	for i in pa_gt.cmo pa_gt.cmi; do \
+            /usr/bin/install -v -c -m 644 camlp5/$$i `ocamlfind query GT`/$$i; \
+        done
 
 uninstall:
-	ocamlfind remove GT
-	$(RM) `ocamlfind query camlp5`/pa_gt.cm* -v
+	$(RM) `ocamlfind query GT`/pa_gt.cm* -v
 	$(MAKE) -C plugins uninstall
+	ocamlfind remove GT
 
 clean:
 	$(MAKE) -C camlp5 clean

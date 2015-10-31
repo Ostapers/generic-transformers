@@ -5,10 +5,40 @@ archive(byte) = "GT.cma"
 archive(native) = "GT.cmxa"
 
 package "syntax" (
- version = "0.1"
- description = "Syntax extension for generic transformers"
- requires = "camlp5"
- archive(syntax, preprocessor) = "pa_gt.cmo"
- archive(syntax, toploop) = "pa_gt.cmo"
-)
+  version = "0.1"
+  description = "Syntax extension for generic transformers"
+  requires = "camlp5"
+  archive(syntax, preprocessor) = "pa_gt.cmo"
+  archive(syntax, toploop) = "pa_gt.cmo"
 
+  package "show" (
+    description = "Plugin 'show'"
+    requires = "GT.syntax"
+    archive(syntax,preprocessor) = "show.cmo"
+    archive(syntax,toploop) = "show.cmo"
+  )
+  package "html" (
+    description = "Plugin 'html'"
+    requires = "GT.syntax"
+    archive(syntax,preprocessor) = "html.cmo"
+    archive(syntax,toploop) = "html.cmo"
+  )
+  package "eq" (
+    description = "Plugin 'eq'"
+    requires = "GT.syntax"
+    archive(syntax,preprocessor) = "eq.cmo"
+    archive(syntax,toploop) = "eq.cmo"
+  )
+  package "foldl" (
+    description = "Plugin 'foldl'"
+    requires = "GT.syntax"
+    archive(syntax,preprocessor) = "foldl.cmo"
+    archive(syntax,toploop) = "foldl.cmo"
+  )
+  package "map" (
+    description = "Plugin 'map'"
+    requires = "GT.syntax"
+    archive(syntax,preprocessor) = "map_gt_plugin.cmo"
+    archive(syntax,toploop) = "map_gt_plugin.cmo"
+  )
+)
