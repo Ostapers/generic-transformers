@@ -10,7 +10,6 @@ ERROR=0
 
 RUN="${TEST}"
 ARGS=""
-CHECKS="${TEST}.log"
 
 for i in ${RUN}; do
     if [ ! -x ${i} ]; then
@@ -26,15 +25,18 @@ fi
 OLDPATH=${PATH}
 PATH=.:${PATH}
 
+CHECKS=${TEST%.native}".log"
+LOGFILE=${CHECKS##*/}
+
 for i in ${RUN}; do
-    log=`basename ${i}`
-    ${i} ${ARGS} > ${log}.log
+    log=`basename ${LOGFILE}`
+    ${i} ${ARGS} > ${log}
 done
 
 PATH=${OLDPATH}
 
 for i in ${CHECKS}; do
-    if ! diff -u orig/${i} ${i} > ${i}.diff; then
+    if ! diff -u orig/${i} $LOGFILE > ${i}.diff; then
 	echo "${TEST}: FAILED (see ${i}.diff)"
 	ERROR=$((${ERROR} + 1))
     else
