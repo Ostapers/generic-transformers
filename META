@@ -11,6 +11,12 @@ package "syntax" (
   archive(syntax, preprocessor) = "pa_gt.cmo"
   archive(syntax, toploop) = "pa_gt.cmo"
 
+  package "compare" (
+    description = "Plugin 'compare'"
+    requires = "GT.syntax"
+    archive(syntax,preprocessor) = "compare.cmo"
+    archive(syntax,toploop) = "compare.cmo"
+  )
   package "show" (
     description = "Plugin 'show'"
     requires = "GT.syntax"
@@ -35,10 +41,21 @@ package "syntax" (
     archive(syntax,preprocessor) = "foldl.cmo"
     archive(syntax,toploop) = "foldl.cmo"
   )
+  package "foldr" (
+    description = "Plugin 'foldr'"
+    requires = "GT.syntax"
+    archive(syntax,preprocessor) = "foldr.cmo"
+    archive(syntax,toploop) = "foldr.cmo"
+  )
   package "map" (
     description = "Plugin 'map'"
     requires = "GT.syntax"
     archive(syntax,preprocessor) = "map_gt_plugin.cmo"
     archive(syntax,toploop) = "map_gt_plugin.cmo"
   )
+  package "all" (
+    description = "All supported syntaxes"
+    requires = "GT.syntax.show,GT.syntax.compare,GT.syntax.html,GT.syntax.eq,GT.syntax.foldl,GT.syntax.foldr"
+  )
 )
+
