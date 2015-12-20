@@ -55,7 +55,9 @@ package "syntax" (
   )
   package "all" (
     description = "All supported syntaxes"
-    requires = "GT.syntax.show,GT.syntax.compare,GT.syntax.html,GT.syntax.eq,GT.syntax.foldl,GT.syntax.foldr"
+    requires = "GT.syntax"
+    archive(syntax,preprocessor) = "compare.cmo eq.cmo foldl.cmo foldr.cmo html.cmo map_gt_plugin.cmo show.cmo"
+    archive(syntax,toploop)      = "compare.cmo eq.cmo foldl.cmo foldr.cmo html.cmo map_gt_plugin.cmo show.cmo"
   )
 )
 
