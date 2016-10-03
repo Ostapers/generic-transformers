@@ -16,7 +16,7 @@ camlp5/pa_gt.cmo:
 	$(MAKE) -C camlp5
 
 install:
-	ocamlfind install GT META src/GT.cma src/GT.cmxa src/GT.cmi src/GT.a camlp5/pa_gt.cmo camlp5/pa_gt.cmi
+	ocamlfind install GT META src/GT.cma src/GT.cmxa src/HTML.cmi src/View.cmi src/GT.cmi src/GT.a camlp5/pa_gt.cmo camlp5/pa_gt.cmi
 	$(MAKE) -C plugins install
 
 uninstall:
